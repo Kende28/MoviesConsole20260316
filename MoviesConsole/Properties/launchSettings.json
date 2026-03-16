@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MoviesConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "--stat"
+    }
+  }
+}
