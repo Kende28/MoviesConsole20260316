@@ -130,37 +130,45 @@ namespace MoviesConsole
 
 		public void HatodikFeladat()
 		{
-			Console.Write("Adja meg egy rendező nevét: ");
-			string rendezo = Console.ReadLine();
+			Console.Write("Adja meg egy film címét: ");
+			string film = Console.ReadLine();
 
-			bool oscar = false;
+			Movies oscarWinner = null;
 
 			foreach (var item in Movies)
 			{
-				if (item.Director == rendezo && item.OscarWinner)
+				if (item.Title == film && item.OscarWinner)
 				{
-					oscar = true;
+					oscarWinner = item;
 				}
 			}
 
-			if (oscar)
+			if (oscarWinner != null && oscarWinner.OscarWinner)
 			{
-				Console.WriteLine($"{rendezo} nyert Oszkárt");
+				Console.WriteLine($"{oscarWinner.Director} nyert Oszkárt");
+			}
+			else if (oscarWinner != null)
+			{
+				Console.WriteLine($"{oscarWinner.Director} nem nyert Oszkárt");
 			}
 			else
 			{
-				Console.WriteLine($"{rendezo} nem nyert Oszkárt");
+				Console.WriteLine("Nincs ilyen című film");
 			}
 
-			oscar = Movies.Where(m => m.Director == rendezo && m.OscarWinner).Select(m => m.OscarWinner).FirstOrDefault();
+			oscarWinner = Movies.Where(m => m.Title == film && m.OscarWinner).FirstOrDefault();
 
-			if (oscar)
+			if (oscarWinner != null && oscarWinner.OscarWinner)
 			{
-				Console.WriteLine($"{rendezo} nyert Oszkárt");
+				Console.WriteLine($"{oscarWinner.Director} nyert Oszkárt");
+			}
+			else if (oscarWinner != null)
+			{
+				Console.WriteLine($"{oscarWinner.Director} nem nyert Oszkárt");
 			}
 			else
 			{
-				Console.WriteLine($"{rendezo} nem nyert Oszkárt");
+				Console.WriteLine("Nincs ilyen című film");
 			}
 		}
 	}
